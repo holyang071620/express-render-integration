@@ -1,13 +1,16 @@
+
 const express = require('express');
+const productService = require('./product-service');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', (req,res) => {
-    res.send('Render Deployment Project');
+// Middleware
+app.use(express.json());
 
-});
+// Routes
+app.use('/products', productService);
 
 app.listen(port, () => {
-    console.loh(`Server running on http://localhost:${port}`);
-
+    console.log(`Server running at http://localhost:${port}`);
 });
